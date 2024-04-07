@@ -1,25 +1,39 @@
-import {apiPath, defaultImagesList} from "../../util/data.js";
 import {useEffect, useState} from "react";
-import ImageSlide from "../ImageSlider/ImageSlide.jsx";
+import ReviewElement from "./ReviewElement.jsx";
+import {apiPath} from "../../util/data.js";
 
-export default function ReviewsBox({reviewIds}) {
+// eslint-disable-next-line react/prop-types
+const ReviewsBox = ({ reviewIds }) => {
     const getRequestPath = apiPath + "/reviews/list/"
-    const [reviews, setReviews] = useState(defaultReviewsList)
+    const [reviews, setReviews] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (reviewIds[0] === 0) {
-            setReviews(defaultImagesList)
-        } else {
-            // eslint-disable-next-line react/prop-types
-            fetch(getRequestPath + imageIds.join(","))
-                .then(res => res.json())
-                .then(elem => setImages(elem))
+        if (reviewIds.length > 0) {
+            try {
+                // eslint-disable-next-line react/prop-types
+                fetch(getRequestPath + reviewIds.join(","))
+                    .then(response => response.json())
+                    .then(jsonObj => setReviews(jsonObj));
+            } catch (error) {
+                setError(error);
+            } finally {
+                setIsLoading(false);
+            }
         }
-    }, [imageIds, getRequestPath]);
+    }, [reviewIds, getRequestPath]);
 
     return (
         <div>
-            {images.map(elem => <ImageSlide key={elem.id} imageName={elem.naming}/>)}
+            {isLoading && <p>Loading reviews...</p>}
+            {error && <p>Error fetching reviews: {error.message}</p>}
+            {reviews.length === 0 && (<p> No comments were left for this product</p>)}
+            {reviews.map((elem) => (
+                <ReviewElement key={elem.id} {...elem} />
+            ))}
         </div>
     );
-}
+};
+
+export default ReviewsBox;

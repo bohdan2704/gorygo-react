@@ -9,7 +9,7 @@ export const defaultProductJson = {
     categoryId: 0,
     sizeIds: [0],
     imageIds: [0],
-    reviewsIds: [0],
+    reviewIds: [0],
     questionIds: [0]
 };
 
@@ -91,17 +91,15 @@ export const defaultReviewsList = [
         "text": "Osprey backpacks are renowned for their comfort and functionality, and for good reason. Having recently put the [Osprey Model Name] through its paces on several mountain hikes, I'm here to share my comprehensive review, highlighting its strengths, weaknesses, and who it might be best suited for.",
         "stars": 4,
         "createdAt": "2024-03-30T15:59:43",
-        "authorId": 1,
-        "responseIds": [
-            2
-        ]
+        "authorId": 0,
+        "responseIds": [0]
     },
     {
         "id": 2,
         "text": "The Osprey [Model Name] is a top-of-the-line backpack that delivers on its promise of comfort and functionality. While it might not be the lightest option, the weight is a fair trade-off for the outstanding support, ventilation, and organization it provides. If you're a serious hiker looking for a reliable pack that will handle multi-day adventures with ease, the Osprey [Model Name] is a great choice.",
         "stars": 5,
         "createdAt": "2024-03-30T15:59:49",
-        "authorId": 3,
-        "responseIds": []
+        "authorId": 0,
+        "responseIds": [0]
     }
 ]

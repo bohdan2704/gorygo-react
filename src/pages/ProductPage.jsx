@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {apiPath, defaultProductJson} from "../util/data.js";
 import ImageSlider from "../components/ImageSlider/ImageSlider.jsx";
 import ReviewsBox from "../components/ReviewsBox/ReviewsBox.jsx";
+import QuestionsBox from "../components/QuestionsBox/QuestionsBox.jsx";
 
 export default function ProductPage() {
     const [productJson, setProductJson] = useState(defaultProductJson)
@@ -19,7 +20,6 @@ export default function ProductPage() {
             .then(json => setProductJson(json))
     }, []);
 
-
     return (
           <div className="main-wrapper">
               <Header/>
@@ -28,9 +28,10 @@ export default function ProductPage() {
               <div className="price">{productJson.price}</div>
               <CategoryChain className="category-chain" categoryId={productJson.categoryId}></CategoryChain>
               <SizesBox className="sizes" sizesIds={productJson.sizeIds}></SizesBox>
-              <ImageSlider className="images" imageIds={productJson.imageIds}></ImageSlider>
-              <ReviewsBox className="reviews" reviewIds={productJson.reviewsIds}></ReviewsBox>
-              {/*<QuestionsBox className="questions" ids={productJson.questionIds}></QuestionsBox>*/}
+              {/*<ImageSlider className="images" imageIds={productJson.imageIds}></ImageSlider>*/}
+              {/*{console.log(productJson)}*/}
+              <ReviewsBox className="reviews" reviewIds={productJson.reviewIds}></ReviewsBox>
+              {/*<QuestionsBox className="questions" questionIds={productJson.questionIds}></QuestionsBox>*/}
           </div>
   )
 }

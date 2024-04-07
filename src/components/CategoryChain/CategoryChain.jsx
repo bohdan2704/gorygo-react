@@ -9,7 +9,6 @@ export default function CategoryChain({categoryId}) {
 
     useEffect(() => {
         if (categoryId === 0) {
-            console.log(defaultCategoryChain)
             setCategoryChain(defaultCategoryChain)
         } else {
             fetch(getRequestPath + categoryId)
