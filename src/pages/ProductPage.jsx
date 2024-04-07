@@ -31,7 +31,7 @@ export default function ProductPage() {
               {/*<ImageSlider className="images" imageIds={productJson.imageIds}></ImageSlider>*/}
               {/*{console.log(productJson)}*/}
               <ReviewsBox className="reviews" reviewIds={productJson.reviewIds}></ReviewsBox>
-              {/*<QuestionsBox className="questions" questionIds={productJson.questionIds}></QuestionsBox>*/}
+              <QuestionsBox className="questions" questionIds={productJson.questionIds}></QuestionsBox>
           </div>
   )
 }
