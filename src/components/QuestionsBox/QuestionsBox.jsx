@@ -6,11 +6,12 @@ import QuestionElement from "./QuestionElement.jsx";
 const QuestionBox = ({ questionIds }) => {
     const getRequestPath = apiPath + "/questions/list/"
     const [questions, setQuestions] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         if (questionIds.length > 0) {
+            setIsLoading(true)
             try {
                 // eslint-disable-next-line react/prop-types
                 fetch(getRequestPath + questionIds.join(","))

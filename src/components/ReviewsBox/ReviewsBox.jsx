@@ -6,11 +6,12 @@ import {apiPath} from "../../util/data.js";
 const ReviewsBox = ({ reviewIds }) => {
     const getRequestPath = apiPath + "/reviews/list/"
     const [reviews, setReviews] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         if (reviewIds.length > 0) {
+            setIsLoading(true)
             try {
                 // eslint-disable-next-line react/prop-types
                 fetch(getRequestPath + reviewIds.join(","))
