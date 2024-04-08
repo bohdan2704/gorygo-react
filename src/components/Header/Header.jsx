@@ -13,7 +13,7 @@ export default function Header() {
                 {mainCategories.map((obj, i) =>
                     <a key={i} onClick={() => navigate('/categories?' + obj.toLowerCase())}>{obj}</a>
                 )}
-                <a onClick={() => navigate('/cart')}>Cart</a>
+                {/*<a onClick={() => navigate('/cart')}>Cart</a>*/}
             </nav>
         </header>
     )
