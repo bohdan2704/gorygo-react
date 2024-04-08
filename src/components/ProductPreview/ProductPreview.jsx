@@ -8,26 +8,33 @@ export default function ProductPreview({id, naming, price, imageIds}) {
     // const [box, setBox] = useState("No data loaded");
     const getRequestPath = apiPath + "/images/"
     const navigate = useNavigate()
-    const [imageName, setImageName] = useState("placeholder.png")
+    const [imageName, setImageName] = useState()
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (imageIds[0] === 0) {
-            setImageName("placeholder.png")
-        } else {
+        setIsLoading(true)
+        try {
             fetch(getRequestPath+imageIds[0])
                 .then(res => res.json())
                 .then(imageAsJson => setImageName(imageAsJson.naming))
+        } catch (error) {
+            setError(error);
+        } finally {
+            setIsLoading(false);
         }
+
     }, [getRequestPath, imageIds]);
 
     return (
     <div className="wrapper">
-    <img onClick={() => navigate('/product?id=' + id)}
-        src={imgFolder+imageName} alt={altText}/>
-            <p>{naming}</p>
-            <p>{price}</p>
-            <button>Buy me!</button>
-        </div>
+        {isLoading && <p>Loading products...</p>}
+        {error && <p>Error fetching products: {error.message}</p>}
+        <img onClick={() => navigate('/product?id=' + id)} src={imgFolder+imageName} alt={altText}/>
+        <p>{naming}</p>
+        <p>{price}</p>
+        <button>Buy me!</button>
+    </div>
     )
 
 }

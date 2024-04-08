@@ -32,7 +32,7 @@ const ResponsesBox = ({ responseIds }) => {
             {error && <p>Error fetching responses: {error.message}</p>}
             {responses.length === 0 && (<p> No responses were left for this review</p>)}
             {responses.map((elem) => (
-                <ResponseElement key={elem.id} text={elem.text} authorId={elem.authorId} />
+                <ResponseElement key={elem.id} {...elem} />
             ))}
         </div>
     );
